@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import com.mar.tmlfx.view.style.*?>
+
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mar.tmlfx.view.controller.TMLOverviewController">
+  <children>
+    <SplitPane dividerPositions="0.7578796561604585" orientation="VERTICAL" prefHeight="700.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <items>
+        <AnchorPane>
+          <children>
+            <SplitPane dividerPositions="0.3210702341137124, 0.6555183946488294" prefHeight="623.0" prefWidth="937.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <items>
+                <AnchorPane prefHeight="398.0" prefWidth="390.0">
+                           <children>
+                              <TableView fx:id="playlistListTable" onMousePressed="#handlePlaylistListDoubleClick" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columns>
+                                  <TableColumn fx:id="playlistListColumnTitle" prefWidth="75.0" text="Playlists" />
+                                </columns>
+                                 <columnResizePolicy>
+                                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                 </columnResizePolicy>
+                              </TableView>
+                           </children></AnchorPane>
+                <AnchorPane prefHeight="398.0" prefWidth="333.0">
+                  <children>
+                              <FlowPane prefHeight="29.0" prefWidth="260.0">
+                                 <children>
+                                    <Label prefHeight="25.0" prefWidth="60.0" text="Filter:">
+                                       <padding>
+                                          <Insets left="20.0" />
+                                       </padding>
+                                    </Label>
+                                    <TextField fx:id="libraryFilterField" />
+                                 </children>
+                              </FlowPane>
+                    <TableView fx:id="libraryTable" onMousePressed="#handleLibraryDoubleClick" prefHeight="524.0" prefWidth="260.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                      <columns>
+                        <TableColumn fx:id="libraryColumnArtist" prefWidth="-1.0" text="Artist" />
+                        <TableColumn fx:id="libraryColumnTitle" prefWidth="-1.0" text="Title" />
+                        <TableColumn fx:id="libraryColumnAlbum" prefWidth="75.0" text="Album" />
+                      </columns>
+                      <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                      </columnResizePolicy>
+                                 <contextMenu>
+                                    <ContextMenu fx:id="libraryContextMenu">
+                                      <items>
+                                        <MenuItem fx:id="libraryContextMenuItemAdd" mnemonicParsing="false" onAction="#handleLibraryContextMenu" text="Add to playlist" />
+                                          <MenuItem fx:id="libraryContextMenuItemEditTag" mnemonicParsing="false" onAction="#handleLibraryContextMenu" text="Update tag" />
+                                          <MenuItem fx:id="libraryContextMenuItemOpenTrackLocation" mnemonicParsing="false" onAction="#handleLibraryContextMenu" text="Open in file explorer" />
+                                      </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                  <children>
+                    <TableView fx:id="playlistTable" layoutX="-7.0" layoutY="62.0" onMousePressed="#handlePlaylistDoubleClick" prefHeight="524.0" prefWidth="271.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <columns>
+                        <TableColumn fx:id="playlistColumnArtist" prefWidth="75.0" text="Artist">
+                          <cellFactory>
+                            <PlaylistCellFactory />
+                          </cellFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="playlistColumnTitle" prefWidth="75.0" text="Title">
+                          <cellFactory>
+                            <PlaylistCellFactory />
+                          </cellFactory>
+                        </TableColumn>
+                        <TableColumn fx:id="playlistColumnPlayIdx" prefWidth="75.0" text="Play index">
+                          <cellFactory>
+                            <PlaylistCellFactory />
+                          </cellFactory>
+                        </TableColumn>
+                      </columns>
+                      <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                      </columnResizePolicy>
+                                 <contextMenu>
+                                    <ContextMenu fx:id="playlistContextMenu">
+                                      <items>
+                                        <MenuItem fx:id="playlistContextMenuItemSave" mnemonicParsing="false" onAction="#handlePlaylistContextMenu" text="Save playlist" />
+                                      </items>
+                                    </ContextMenu>
+                                 </contextMenu>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+              </items>
+            </SplitPane>
+          </children>
+        </AnchorPane>
+        <AnchorPane maxHeight="100.0" minHeight="0.0" minWidth="0.0" prefHeight="100.0">
+          <children>
+            <fx:include fx:id="player" source="Player.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          </children>
+        </AnchorPane>
+      </items>
+    </SplitPane>
+  </children>
+</AnchorPane>
