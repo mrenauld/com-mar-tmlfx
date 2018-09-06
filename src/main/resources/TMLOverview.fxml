@@ -91,6 +91,8 @@
                                     <ContextMenu fx:id="playlistContextMenu">
                                       <items>
                                         <MenuItem fx:id="playlistContextMenuItemSave" mnemonicParsing="false" onAction="#handlePlaylistContextMenu" text="Save playlist" />
+                                          <MenuItem fx:id="playlistContextMenuItemRemove" mnemonicParsing="false" onAction="#handlePlaylistContextMenu" text="Remove track(s)" />
+                                          <MenuItem fx:id="playlistContextMenuItemClear" mnemonicParsing="false" onAction="#handlePlaylistContextMenu" text="Clear playlist" />
                                       </items>
                                     </ContextMenu>
                                  </contextMenu>

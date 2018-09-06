@@ -150,7 +150,7 @@ public class TrackList {
      * @param pTrackList
      */
     public void removeTrackList(List<Track> pTrackList) {
-        for (Track track : trackList) {
+        for (Track track : pTrackList) {
             removeTrack(track);
         }
     }

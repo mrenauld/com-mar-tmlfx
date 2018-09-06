@@ -44,6 +44,12 @@ public class PlayerController extends AbstractPlayerController {
     }
 
     @Override
+    public void setVolume(double pVolume) {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
     public void stop() {
         if (player != null && !player.getStatus().equals(Status.STOPPED)) {
             player.stop();

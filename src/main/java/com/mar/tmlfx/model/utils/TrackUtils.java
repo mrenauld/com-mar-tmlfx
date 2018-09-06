@@ -32,8 +32,8 @@ public class TrackUtils {
             "Musique ethnique", "Gothique", "Darkwave", "Techno-Industrial", "Musique électronique", "Pop-Folk",
             "Eurodance", "Dream", "Southern Rock", "Comédie", "Cult", "Gangsta", "Hit-parade", "Rap chrétien",
             "Pop/Funk", "Jungle", "Musique amérindienne", "Cabaret", "New Wave", "Psychédélique", "Rave",
-            "Comédie musicale", "Bande-annonce", "Lo-fi", "Musique tribale", "Acid Punk", "Acid Jazz", "Polka", "Rétro",
-            "Théatre", "Rock & Roll", "Hard Rock" };
+            "Comédie musicale", "Bande-annonce", "Lo-fi", "Musique tribale", "Acid Punk", "Acid Jazz", "Polka",
+            "Rétro", "Théatre", "Rock & Roll", "Hard Rock" };
 
     public static String exportToString(Track pTrack) {
         StringBuilder sb = new StringBuilder();
@@ -171,6 +171,18 @@ public class TrackUtils {
         return track;
     }
 
+    public static String normalizePath(final String path) {
+        final String[] split = path.split("[\\\\]");
+        String out = "";
+        for (int i = 0; i < split.length; ++i) {
+            out += split[i];
+            if (i < split.length - 1) {
+                out += "/";
+            }
+        }
+        return out;
+    }
+
     public static void updateTag(Track pTrack) {
         LogUtils.logInfo(TrackUtils.class, "Updating tag for track [" + pTrack.getFilename() + "]");
 
@@ -257,18 +269,6 @@ public class TrackUtils {
             s = pLibString;
         }
         return s;
-    }
-
-    private static String normalizePath(final String path) {
-        final String[] split = path.split("[\\\\]");
-        String out = "";
-        for (int i = 0; i < split.length; ++i) {
-            out += split[i];
-            if (i < split.length - 1) {
-                out += "/";
-            }
-        }
-        return out;
     }
 
     private static String stringToLibString(String pString) {

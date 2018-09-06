@@ -172,6 +172,9 @@ public class TMLModel {
      * Performs the closing operations like saving the library if needed.
      */
     public void quit() {
+        /* Save settings. */
+        Settings.saveProperties();
+
         if (libraryModified) {
             LibraryUtils.saveLibrary(library, Settings.getFileLibraryFilename());
             LogUtils.logInfo(this,

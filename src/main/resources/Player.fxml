@@ -15,6 +15,8 @@
       <Label fx:id="labelTime" layoutX="14.0" layoutY="28.0" text="Time" AnchorPane.leftAnchor="10.0" />
       <ButtonBar layoutY="50.0" prefHeight="50.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
         <buttons>
+            <Label text="Volume" />
+            <Slider fx:id="sliderVolume" />
           <Button fx:id="buttonPlay" mnemonicParsing="false" onMousePressed="#handleClick" text="Play" />
             <Button fx:id="buttonStop" layoutX="535.0" layoutY="10.0" mnemonicParsing="false" onMousePressed="#handleClick" text="Stop" />
             <Button fx:id="buttonPrev" layoutX="535.0" layoutY="10.0" mnemonicParsing="false" onMousePressed="#handleClick" text="Prev" />

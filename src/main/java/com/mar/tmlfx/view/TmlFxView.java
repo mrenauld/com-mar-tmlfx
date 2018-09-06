@@ -51,7 +51,7 @@ public class TmlFxView extends Application {
     }
 
     public boolean showTagEditDialog(List<Track> pTrackList) {
-        String fxml = "controller/TagEditDialog.fxml";
+        String fxml = "/TagEditDialog.fxml";
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(TmlFxView.class.getResource(fxml));
@@ -100,7 +100,7 @@ public class TmlFxView extends Application {
     }
 
     private void initRootLayout() {
-        String fxml = "controller/RootLayout.fxml";
+        String fxml = "/RootLayout.fxml";
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(TmlFxView.class.getResource(fxml));
@@ -120,7 +120,7 @@ public class TmlFxView extends Application {
     }
 
     private void showOverview() {
-        String fxml = "controller/TMLOverview.fxml";
+        String fxml = "/TMLOverview.fxml";
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(TmlFxView.class.getResource(fxml));

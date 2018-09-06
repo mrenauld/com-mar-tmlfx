@@ -25,10 +25,7 @@ import uk.co.caprica.vlcj.player.embedded.EmbeddedMediaPlayer;
 public class PlayerControllerVLCJ extends AbstractPlayerController implements ActionListener, MediaPlayerEventListener {
 
     /** Number of increments of the progress bar. */
-    private final int BAR_MAX = 10000;
-
-    /** Number of increments for the volume bar. */
-    private final int VOLUME_MAX = 100;
+    private final int BAR_MAX = 2000;
 
     private MediaPlayerFactory factory;
 
@@ -215,6 +212,7 @@ public class PlayerControllerVLCJ extends AbstractPlayerController implements Ac
         }
         player = factory.newEmbeddedMediaPlayer(null);
         player.addMediaPlayerEventListener(this);
+        setVolume(sliderVolume.getValue());
 
         sliderPlayTime.setMin(0);
         sliderPlayTime.setMax(BAR_MAX);
@@ -264,6 +262,8 @@ public class PlayerControllerVLCJ extends AbstractPlayerController implements Ac
 
     @Override
     public void quit() {
+        super.quit();
+
         if (player != null) {
             player.stop();
             player.release();
@@ -281,6 +281,15 @@ public class PlayerControllerVLCJ extends AbstractPlayerController implements Ac
     public void seekableChanged(MediaPlayer pArg0, int pArg1) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void setVolume(double pVolume) {
+        if (player != null) {
+            player.setVolume((int) pVolume);
+        } else {
+            LogUtils.logDebug(this, "Impossible to set volume, player not yet initialized");
+        }
     }
 
     @Override

@@ -20,6 +20,8 @@ public class Settings extends AbstractSettings {
 
     public static final String TML_PLAY_RANDOM = "tml.play.random";
 
+    public static final String TML_PLAYER_VOLUME = "tml.player.volume";
+
     public static String getFileExtensionLibrary() {
         return getValue(TML_FILE_EXTENSION_LIBRARY);
     }
@@ -44,8 +46,16 @@ public class Settings extends AbstractSettings {
         return getValue(TML_PATH_VLC);
     }
 
+    public static int getPlayerVolume() {
+        return getValueInt(TML_PLAYER_VOLUME);
+    }
+
     public static boolean isPlayRandom() {
         return getValueBoolean(TML_PLAY_RANDOM);
+    }
+
+    public static void setPlayerVolume(int pValue) {
+        setValue(TML_PLAYER_VOLUME, pValue);
     }
 
     public static void setPlayRandom(boolean pValue) {

@@ -18,7 +18,8 @@ public class LibraryUtils {
 
     /**
      * Adds the content of the specified folder and subfolders to the specified
-     * {@link Library}.
+     * {@link Library}. Does not refresh the tracks already present in the
+     * library.
      *
      * @param pLibrary
      * @param pFolder
@@ -30,17 +31,22 @@ public class LibraryUtils {
             normalizedPath = normalizedPath + "/";
         }
 
-        final File directory = new File(normalizedPath);
-        final String[] children = directory.list();
+        File directory = new File(normalizedPath);
+        String[] children = directory.list();
         if (children != null) {
             for (int i = 0; i < children.length; ++i) {
-                final File subdir = new File(normalizedPath + children[i]);
+                File subdir = new File(normalizedPath + children[i]);
                 if (subdir.isDirectory()) {
                     addTracksFromFolder(pLibrary, normalizedPath + children[i]);
                 } else {
-                    final Track track = TrackUtils.loadTag(normalizedPath + children[i]);
-                    if (track != null) {
-                        pLibrary.addTrack(track);
+                    String path = normalizedPath + children[i];
+                    String normPath = TrackUtils.normalizePath(path);
+
+                    if (!pLibrary.contains(normPath)) {
+                        Track track = TrackUtils.loadTag(normPath);
+                        if (track != null) {
+                            pLibrary.addTrack(track);
+                        }
                     }
                 }
             }

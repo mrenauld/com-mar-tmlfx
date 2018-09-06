@@ -83,6 +83,12 @@ public class TMLOverviewController {
     @FXML
     private MenuItem playlistContextMenuItemSave;
 
+    @FXML
+    private MenuItem playlistContextMenuItemClear;
+
+    @FXML
+    private MenuItem playlistContextMenuItemRemove;
+
     private TmlFxView view;
 
     private TMLModel model;
@@ -187,6 +193,7 @@ public class TMLOverviewController {
     @FXML
     private void handlePlaylistContextMenu(ActionEvent pActionEvent) {
         MenuItem menuItem = (MenuItem) pActionEvent.getTarget();
+        ObservableList<Track> trackList = playlistTable.getSelectionModel().getSelectedItems();
         if (playlistContextMenuItemSave.equals(menuItem) && model.getCurrentPLaylist().size() > 0) {
             FileChooser fileChooser = new FileChooser();
 
@@ -207,6 +214,10 @@ public class TMLOverviewController {
                 model.saveCurrentPlaylist(file.getAbsolutePath());
                 playlistTable.refresh();
             }
+        } else if (playlistContextMenuItemRemove.equals(menuItem)) {
+            model.getCurrentPLaylist().removeTrackList(trackList);
+        } else if (playlistContextMenuItemClear.equals(menuItem)) {
+            model.getCurrentPLaylist().empty();
         }
     }
 
